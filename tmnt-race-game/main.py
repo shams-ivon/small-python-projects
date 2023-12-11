@@ -13,61 +13,41 @@ tmnt_color_list = [(30, 144, 255), "red", (148, 0, 211), "orange"]
 tmnt_y_axis_position_list = [45, 15, -15, -45]
 tmnt_object_list = []
 
-# for index in range(4):
+for index in range(4):
     
-#     current_turtle = Turtle()
-#     current_turtle.shape("turtle")
-#     current_turtle.color(tmnt_color_list[index])
-#     current_turtle.penup()
-#     current_turtle.goto(x=-200, y=tmnt_y_axis_position_list[index])
-#     current_turtle.speed(1)
-#     tmnt_object_list.append(current_turtle)
+    current_turtle = Turtle()
+    current_turtle.shape("turtle")
+    current_turtle.color(tmnt_color_list[index])
+    current_turtle.penup()
+    current_turtle.goto(x=-200, y=tmnt_y_axis_position_list[index])
+    current_turtle.speed(1)
+    tmnt_object_list.append(current_turtle)
 
-# end_line = Turtle()
+end_line = Turtle()
 
-# end_line.hideturtle()
-# end_line.penup()
+end_line.hideturtle()
+end_line.penup()
 
-# end_line.goto(x=200, y=100)
-# end_line.pendown()
-# end_line.goto(x=200, y=-100)
+end_line.goto(x=200, y=100)
+end_line.pendown()
+end_line.goto(x=200, y=-100)
 
-# winner_turtle = "leo"
+winner_turtle = "leo"
 
-# while True:
+while True:
     
-#     number = random.randint(0, 3)
-    
-#     if number == 1:
-#         leo.forward(10)
-#     elif number == 2:
-#         raph.forward(10)
-#     elif number == 3:
-#         donny.forward(10)
-#     else:
-#         mikey.forward(10)
+    index = random.randint(0, 3)
+    current_turtle = tmnt_object_list[index]
+    current_turtle.forward(10)
 
-#     leo_pos = leo.pos()
-#     raph_pos = raph.pos()
-#     donny_pos = donny.pos()
-#     mikey_pos = mikey.pos()
+    if current_turtle.pos()[0] == 200:
 
-#     if leo_pos[0] == 200:
-#         winner_turtle = "leo"
-#         break
-#     elif raph_pos[0] == 200:
-#         winner_turtle = "raph"
-#         break
-#     elif donny_pos[0] == 200:
-#         winner_turtle = "donny"
-#         break
-#     elif mikey_pos[0] == 200:
-#         winner_turtle = "mikey"
-#         break
+        winner_turtle = tmnt_name_list[index]
+        break
 
-# if user_bet_turtle == winner_turtle:
-#     print(f"You win. The winner is {winner_turtle}")
-# else:
-#     print(f"You lose. The winner is {winner_turtle}")
+if user_bet_turtle == winner_turtle:
+    print(f"You win. The winner is {winner_turtle}")
+else:
+    print(f"You lose. The winner is {winner_turtle}")
 
-# screen.exitonclick()
+screen.exitonclick()
