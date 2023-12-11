@@ -9,12 +9,13 @@ screen.colormode(255)
 
 arrow_turtle = Turtle()
 arrow_turtle.width(10)
-
 arrow_turtle.penup()
+arrow_turtle.hideturtle()
+arrow_turtle.speed(0)
+
 arrow_turtle.left(225)
 arrow_turtle.forward(200)
 arrow_turtle.right(225)
-arrow_turtle.pendown()
 
 for i in range(10):
     
@@ -24,20 +25,15 @@ for i in range(10):
 
     for j in range(9):
 
-        arrow_turtle.penup()
         arrow_turtle.forward(40)
-        arrow_turtle.pendown()
-
         color = color_tuple_list[random.randint(0, upto)]
         arrow_turtle.color(color)
         arrow_turtle.dot()
 
-    arrow_turtle.penup()
     arrow_turtle.left(90)
     arrow_turtle.forward(40)
     arrow_turtle.left(90)
     arrow_turtle.forward(9 * 40)
     arrow_turtle.right(180)
-    arrow_turtle.pendown()
         
 screen.exitonclick()
