@@ -21,10 +21,16 @@ for index in range(3):
 
 while True:
 
-    for block in snake_blocks:
-        block.forward(20)
-    
+    snake_size = len(snake_blocks)
+    snake_blocks[0].forward(20)
+
+    for index in range(snake_size - 1, 0, -1):
+        
+        snake_blocks[index].goto(snake_positions[index - 1])
+        snake_positions[index] = snake_positions[index - 1]
+
+    snake_positions[0][0] += 20
     screen.update()
-    time.sleep(0.3)
+    time.sleep(0.1)
 
 screen.exitonclick()
