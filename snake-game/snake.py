@@ -1,11 +1,16 @@
 from turtle import Turtle
 
+SNAKE_STARTING_POSITION = [(0, 0), (-20, 0), (-40, 0)]
+ONE_MOVE_DISTANCE = 20
+
 class Snake:
 
     def __init__(self):
         
         self.snake_blocks = []
-        self.snake_positions = [(0, 0), (-20, 0), (-40, 0)]
+        self.create_snake()
+
+    def create_snake(self):
 
         for index in range(3):
 
@@ -13,7 +18,7 @@ class Snake:
             block.color("white")
             block.penup()
             
-            block.goto(self.snake_positions[index])
+            block.goto(SNAKE_STARTING_POSITION[index])
             self.snake_blocks.append(block)
 
     def move(self):
@@ -26,4 +31,4 @@ class Snake:
             next_y = self.snake_blocks[index - 1].ycor()
             self.snake_blocks[index].goto(next_x, next_y)
 
-        self.snake_blocks[0].forward(20)
+        self.snake_blocks[0].forward(ONE_MOVE_DISTANCE)
