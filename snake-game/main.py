@@ -19,8 +19,11 @@ for index in range(3):
     block.goto(snake_positions[index])
     snake_blocks.append(block)
 
-while True:
+x = 0
 
+while x < 15:
+    
+    x += 1
     snake_size = len(snake_blocks)
     snake_blocks[0].forward(20)
 
@@ -29,7 +32,9 @@ while True:
         snake_blocks[index].goto(snake_positions[index - 1])
         snake_positions[index] = snake_positions[index - 1]
 
-    snake_positions[0][0] += 20
+    first_block_x = snake_positions[0][0]
+    first_block_y = snake_positions[0][1]
+    snake_positions[0] = (first_block_x + 20, first_block_y)
     screen.update()
     time.sleep(0.1)
 
