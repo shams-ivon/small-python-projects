@@ -32,3 +32,19 @@ class Snake:
             self.snake_blocks[index].goto(next_x, next_y)
 
         self.snake_blocks[0].forward(ONE_MOVE_DISTANCE)
+
+    def up(self):
+
+        self.snake_blocks[0].setheading(90)
+
+    def down(self):
+
+        self.snake_blocks[0].setheading(270)
+
+    def left(self):
+
+        self.snake_blocks[0].setheading(180)
+
+    def right(self):
+
+        self.snake_blocks[0].setheading(0)
