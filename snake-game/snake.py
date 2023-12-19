@@ -9,28 +9,28 @@ RIGHT = 0
 class Snake:
 
     def __init__(self):
-        
         self.snake_blocks = []
         self.create_snake()
         self.head = self.snake_blocks[0]
 
     def create_snake(self):
 
-        for index in range(3):
+        for position in SNAKE_STARTING_POSITION:
+            self.add_segment(position)
 
-            block = Turtle("square")
-            block.color("white")
-            block.penup()
-            
-            block.goto(SNAKE_STARTING_POSITION[index])
-            self.snake_blocks.append(block)
+    def add_segment(self, position):
+        block = Turtle("square")
+        block.color("white")
+        block.penup()
+        block.goto(position)
+        self.snake_blocks.append(block)
+
+    
 
     def move(self):
-        
         snake_size = len(self.snake_blocks)
 
         for index in range(snake_size - 1, 0, -1):
-            
             next_x = self.snake_blocks[index - 1].xcor()
             next_y = self.snake_blocks[index - 1].ycor()
             self.snake_blocks[index].goto(next_x, next_y)

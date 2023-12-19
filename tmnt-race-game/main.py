@@ -14,7 +14,6 @@ tmnt_y_axis_position_list = [45, 15, -15, -45]
 tmnt_object_list = []
 
 for index in range(4):
-    
     current_turtle = Turtle()
     current_turtle.shape("turtle")
     current_turtle.color(tmnt_color_list[index])
@@ -35,13 +34,11 @@ end_line.goto(x=200, y=-100)
 winner_turtle = "leo"
 
 while True:
-    
     index = random.randint(0, 3)
     current_turtle = tmnt_object_list[index]
     current_turtle.forward(10)
 
     if current_turtle.pos()[0] == 200:
-
         winner_turtle = tmnt_name_list[index]
         break
 

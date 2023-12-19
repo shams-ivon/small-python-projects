@@ -11,7 +11,6 @@ TOP_MARGIN = 240
 BOTTOM_MARGIN = -240
 
 def round_close_to_zero(number):
-
     tmp = abs(number)
     return math.floor(tmp) if number >= 0 else - math.floor(tmp)
 
@@ -34,13 +33,11 @@ screen.onkey(snake.right, "Right")
 game_is_on = True
 
 while game_is_on:
-
     screen.update()
     time.sleep(0.1)
     snake.move()
 
     if snake.head.distance(food) <= 17:
-        
         food.new_food_appears()
         scoreboard.update_score()
 

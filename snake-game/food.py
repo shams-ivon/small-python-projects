@@ -9,7 +9,6 @@ HIGHEST_CORY = 230
 class Food(Turtle):
 
     def __init__(self):
-
         super().__init__()
         self.shape("circle")
         self.penup()
@@ -19,7 +18,6 @@ class Food(Turtle):
         self.new_food_appears()
 
     def new_food_appears(self):
-
         rand_x = random.randint(LOWEST_CORX, HIGHEST_CORX)
         rand_y = random.randint(LOWEST_CORY, HIGHEST_CORY)
         self.goto(rand_x, rand_y)

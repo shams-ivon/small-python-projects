@@ -1,7 +1,6 @@
 from turtle import Turtle, Screen
 
 screen = Screen()
-
 arrow_turtle = Turtle()
 
 def go_foroward():
@@ -17,7 +16,6 @@ def turn_right():
     arrow_turtle.right(10)
 
 def clear():
-    
     arrow_turtle.clear()
     arrow_turtle.penup()
     arrow_turtle.speed(0)
