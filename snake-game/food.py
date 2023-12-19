@@ -1,6 +1,11 @@
 import random
 from turtle import Turtle
 
+LOWEST_CORX = -250
+LOWEST_CORY = -250
+HIGHEST_CORX = 250
+HIGHEST_CORY = 230
+
 class Food(Turtle):
 
     def __init__(self):

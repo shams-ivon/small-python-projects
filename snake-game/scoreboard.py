@@ -4,7 +4,7 @@ FONT = ("Comic Sans MS", 30, "normal")
 LEFT_MARGIN = -270
 RIGHT_MARGIN = 270
 TOP_MARGIN = 250
-BOTTOM_MARGIN = -270
+BOTTOM_MARGIN = -250
 SCOREBOARD_POSITION = (-70, 260)
 
 class Scoreboard(Turtle):

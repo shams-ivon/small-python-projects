@@ -7,7 +7,7 @@ from scoreboard import Scoreboard
 LEFT_MARGIN = -260
 RIGHT_MARGIN = 260
 TOP_MARGIN = 240
-BOTTOM_MARGIN = -260
+BOTTOM_MARGIN = -240
 
 screen = Screen()
 screen.setup(width=600, height=600)
