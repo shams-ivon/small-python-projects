@@ -25,7 +25,8 @@ class Snake:
         block.goto(position)
         self.snake_blocks.append(block)
 
-    
+    def extend_snake(self):
+        self.add_segment(self.snake_blocks[-1].position())
 
     def move(self):
         snake_size = len(self.snake_blocks)

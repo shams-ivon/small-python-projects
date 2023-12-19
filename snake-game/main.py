@@ -39,14 +39,24 @@ while game_is_on:
 
     if snake.head.distance(food) <= 17:
         food.new_food_appears()
+        snake.extend_snake()
         scoreboard.update_score()
 
     head_x = round_close_to_zero(snake.head.xcor())
     head_y = round_close_to_zero(snake.head.ycor())
 
     if head_x < LEFT_MARGIN or head_x > RIGHT_MARGIN:
+        scoreboard.game_over()
         game_is_on = False
+
     elif head_y < BOTTOM_MARGIN or head_y > TOP_MARGIN:
+        scoreboard.game_over()
         game_is_on = False
+
+    for block in snake.snake_blocks[1:]:
+        
+        if snake.head.distance(block) < 10:
+            scoreboard.game_over()
+            game_is_on = False
     
 screen.exitonclick()
