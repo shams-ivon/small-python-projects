@@ -2,7 +2,7 @@ import random
 from turtle import Turtle
 
 LOWEST_CORX = -250
-LOWEST_CORY = -250
+LOWEST_CORY = -230
 HIGHEST_CORX = 250
 HIGHEST_CORY = 230
 
@@ -20,6 +20,6 @@ class Food(Turtle):
 
     def new_food_appears(self):
 
-        rand_x = random.randint(-250, 250)
-        rand_y = random.randint(-250, 220)
+        rand_x = random.randint(LOWEST_CORX, HIGHEST_CORX)
+        rand_y = random.randint(LOWEST_CORY, HIGHEST_CORY)
         self.goto(rand_x, rand_y)

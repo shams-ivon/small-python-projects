@@ -17,13 +17,12 @@ def turn_right():
     arrow_turtle.right(10)
 
 def clear():
+    
     arrow_turtle.clear()
     arrow_turtle.penup()
     arrow_turtle.speed(0)
-    # This two lines are equivalent
     arrow_turtle.goto(0, 0)
     arrow_turtle.setheading(0)
-    # to "arrow_turtle.home()"
     arrow_turtle.pendown()
 
 screen.listen()

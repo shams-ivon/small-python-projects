@@ -17,7 +17,7 @@ class Scoreboard(Turtle):
         self.penup()
         self.goto(SCOREBOARD_POSITION)
         self.color("white")
-        self.update_scoreboard()
+        self.updated_scoreboard()
         self.draw_border()
 
     def draw_border(self):
@@ -36,7 +36,7 @@ class Scoreboard(Turtle):
         self.penup()
 
 
-    def update_scoreboard(self):
+    def updated_scoreboard(self):
         self.write(f"Score: {self.score}", font=FONT)
 
     def update_score(self):
@@ -44,4 +44,4 @@ class Scoreboard(Turtle):
         self.score += 1
         self.clear()
         self.draw_border()
-        self.update_scoreboard()
+        self.updated_scoreboard()

@@ -1,3 +1,4 @@
+import math
 import time
 from turtle import Screen
 from snake import Snake
@@ -8,6 +9,11 @@ LEFT_MARGIN = -260
 RIGHT_MARGIN = 260
 TOP_MARGIN = 240
 BOTTOM_MARGIN = -240
+
+def round_close_to_zero(number):
+
+    tmp = abs(number)
+    return math.floor(tmp) if number >= 0 else - math.floor(tmp)
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -38,9 +44,12 @@ while game_is_on:
         food.new_food_appears()
         scoreboard.update_score()
 
-    if snake.head.xcor() < LEFT_MARGIN or snake.head.xcor() > RIGHT_MARGIN:
+    head_x = round_close_to_zero(snake.head.xcor())
+    head_y = round_close_to_zero(snake.head.ycor())
+
+    if head_x < LEFT_MARGIN or head_x > RIGHT_MARGIN:
         game_is_on = False
-    elif snake.head.ycor() < BOTTOM_MARGIN or snake.head.ycor() > TOP_MARGIN:
+    elif head_y < BOTTOM_MARGIN or head_y > TOP_MARGIN:
         game_is_on = False
     
 screen.exitonclick()
