@@ -4,6 +4,7 @@ STRETCH_HOR = 1.5
 STRETCH_VER = 4.5
 TOP_MARGIN = 200
 BOTTOM_MARGIN = -200
+ONE_VERTICAL_MOVE = 70
 
 class Paddle(Turtle):
 
@@ -16,13 +17,13 @@ class Paddle(Turtle):
         self.goto(goto_x, goto_y)
 
     def up(self):
-        move_up = min([100, TOP_MARGIN - self.ycor()])
         cur_x = self.xcor()
         cur_y = self.ycor()
+        move_up = min([ONE_VERTICAL_MOVE, TOP_MARGIN - cur_y])
         self.goto(cur_x, cur_y + move_up)
     
     def down(self):
-        move_down = min([100, self.ycor() - BOTTOM_MARGIN])
         cur_x = self.xcor()
         cur_y = self.ycor()
+        move_down = min([ONE_VERTICAL_MOVE, cur_y - BOTTOM_MARGIN])
         self.goto(cur_x, cur_y - move_down)
