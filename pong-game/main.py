@@ -9,6 +9,11 @@ LEFT_MARGIN = -330
 RIGHT_MARGIN = 330
 TOP_MARGIN = 210
 BOTTOM_MARGIN = -210
+LEFT_TOUCH = -330
+RIGHT_TOUCH = 330
+LEFT_GAME_OVER = -340
+RIGHT_GAME_OVER = 340
+PADDLE_CENTRE_TO_BALL_CENTRE = 45
 LEFT_PADDLE_POSITION = (-350, 0)
 RIGHT_PADDLE_POSITION = (350, 0)
 
@@ -40,16 +45,23 @@ game_is_on = True
 
 while game_is_on:
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.15)
     ball.move()
 
     ball_x = round_close_to_zero(ball.xcor())
     ball_y = round_close_to_zero(ball.ycor())
 
-    if ball_x > RIGHT_MARGIN or ball_x < LEFT_MARGIN:
-        ball.reverse_change_xcor()
-    
+    if ball_x < LEFT_GAME_OVER or ball_x > RIGHT_GAME_OVER:
+        game_is_on = False
+        continue
+
     if ball_y > TOP_MARGIN or ball_y < BOTTOM_MARGIN:
         ball.reverse_change_ycor()
     
+    if left_paddle.distance(ball) <= PADDLE_CENTRE_TO_BALL_CENTRE and ball_x <= LEFT_TOUCH:
+        ball.reverse_change_xcor()
+
+    if right_paddle.distance(ball) <= PADDLE_CENTRE_TO_BALL_CENTRE and ball_x >= RIGHT_TOUCH:
+        ball.reverse_change_xcor()
+
 screen.exitonclick()
