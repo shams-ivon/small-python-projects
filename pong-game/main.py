@@ -1,13 +1,14 @@
+import math
 import time
 from ball import Ball
 from turtle import Screen
 from paddle import Paddle
 from field_decorator import Field_decorator
 
-LEFT_MARGIN = -370
-RIGHT_MARGIN = 370
-TOP_MARGIN = 250
-BOTTOM_MARGIN = -250
+LEFT_MARGIN = -330
+RIGHT_MARGIN = 330
+TOP_MARGIN = 210
+BOTTOM_MARGIN = -210
 LEFT_PADDLE_POSITION = (-350, 0)
 RIGHT_PADDLE_POSITION = (350, 0)
 
@@ -23,6 +24,11 @@ left_paddle = Paddle(LEFT_PADDLE_POSITION)
 right_paddle = Paddle(RIGHT_PADDLE_POSITION)
 ball = Ball()
 
+def round_close_to_zero(number):
+    tmp = abs(number)
+    return math.floor(tmp) if number >= 0 else - math.floor(tmp)
+
+
 field_decorator.draw_border()
 
 screen.onkey(left_paddle.up, "q")
@@ -36,5 +42,14 @@ while game_is_on:
     screen.update()
     time.sleep(0.1)
     ball.move()
+
+    ball_x = round_close_to_zero(ball.xcor())
+    ball_y = round_close_to_zero(ball.ycor())
+
+    if ball_x > RIGHT_MARGIN or ball_x < LEFT_MARGIN:
+        ball.reverse_change_xcor()
+    
+    if ball_y > TOP_MARGIN or ball_y < BOTTOM_MARGIN:
+        ball.reverse_change_ycor()
     
 screen.exitonclick()
