@@ -1,9 +1,9 @@
 from turtle import Turtle
 
-LEFT_MARGIN = -270
-RIGHT_MARGIN = 270
-TOP_MARGIN = 250
-BOTTOM_MARGIN = -250
+LEFT_TOP = (-270, 250)
+RIGHT_TOP = (270, 250)
+LEFT_BOTTOM = (-270, -250)
+RIGHT_BOTTOM = (270, -250)
 
 class Field_decorator(Turtle):
 
@@ -15,10 +15,10 @@ class Field_decorator(Turtle):
         self.draw_border()
 
     def draw_border(self):
-        self.draw_line((LEFT_MARGIN, TOP_MARGIN), (RIGHT_MARGIN, TOP_MARGIN))
-        self.draw_line((RIGHT_MARGIN, TOP_MARGIN), (RIGHT_MARGIN, BOTTOM_MARGIN))
-        self.draw_line((RIGHT_MARGIN, BOTTOM_MARGIN), (LEFT_MARGIN, BOTTOM_MARGIN))
-        self.draw_line((LEFT_MARGIN, BOTTOM_MARGIN), (LEFT_MARGIN, TOP_MARGIN))
+        self.draw_line(LEFT_TOP, RIGHT_TOP)
+        self.draw_line(RIGHT_TOP, RIGHT_BOTTOM)
+        self.draw_line(RIGHT_BOTTOM, LEFT_BOTTOM)
+        self.draw_line(LEFT_BOTTOM, LEFT_TOP)
 
     def draw_line(self, from_pos, to_pos):
         self.goto(from_pos)

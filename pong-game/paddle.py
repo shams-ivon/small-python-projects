@@ -8,13 +8,13 @@ ONE_VERTICAL_MOVE = 20
 
 class Paddle(Turtle):
 
-    def __init__(self, goto_x, goto_y):
+    def __init__(self, position):
         super().__init__()
         self.shape("square")
         self.penup()
         self.color("white")
         self.shapesize(stretch_len=STRETCH_HOR, stretch_wid=STRETCH_VER)
-        self.goto(goto_x, goto_y)
+        self.goto(position)
 
     def up(self):
         cur_x = self.xcor()
