@@ -1,3 +1,5 @@
+import time
+from ball import Ball
 from turtle import Screen
 from paddle import Paddle
 from field_decorator import Field_decorator
@@ -19,18 +21,20 @@ screen.listen()
 field_decorator = Field_decorator()
 left_paddle = Paddle(LEFT_PADDLE_POSITION)
 right_paddle = Paddle(RIGHT_PADDLE_POSITION)
+ball = Ball()
 
 field_decorator.draw_border()
-
-game_is_on = True
-
 
 screen.onkey(left_paddle.up, "q")
 screen.onkey(left_paddle.down, "a")
 screen.onkey(right_paddle.up, "o")
 screen.onkey(right_paddle.down, "l")
 
+game_is_on = True
+
 while game_is_on:
     screen.update()
+    time.sleep(0.1)
+    ball.move()
     
 screen.exitonclick()
