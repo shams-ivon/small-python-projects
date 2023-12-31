@@ -3,16 +3,17 @@ import time
 from ball import Ball
 from turtle import Screen
 from paddle import Paddle
+from scoreboard import Scoreboard
 from field_decorator import Field_decorator
 
 LEFT_MARGIN = -330
 RIGHT_MARGIN = 330
 TOP_MARGIN = 210
 BOTTOM_MARGIN = -210
-LEFT_TOUCH = -330
-RIGHT_TOUCH = 330
-LEFT_GAME_OVER = -340
-RIGHT_GAME_OVER = 340
+LEFT_TOUCH = -320
+RIGHT_TOUCH = 320
+LEFT_MISS = -340
+RIGHT_MISS = 340
 PADDLE_CENTRE_TO_BALL_CENTRE = 45
 LEFT_PADDLE_POSITION = (-350, 0)
 RIGHT_PADDLE_POSITION = (350, 0)
@@ -28,6 +29,7 @@ field_decorator = Field_decorator()
 left_paddle = Paddle(LEFT_PADDLE_POSITION)
 right_paddle = Paddle(RIGHT_PADDLE_POSITION)
 ball = Ball()
+scoreboard = Scoreboard()
 
 def round_close_to_zero(number):
     tmp = abs(number)
@@ -51,8 +53,16 @@ while game_is_on:
     ball_x = round_close_to_zero(ball.xcor())
     ball_y = round_close_to_zero(ball.ycor())
 
-    if ball_x < LEFT_GAME_OVER or ball_x > RIGHT_GAME_OVER:
-        game_is_on = False
+    if ball_x < LEFT_MISS:
+        ball.goto(0, 0)
+        ball.reverse_change_xcor()
+        scoreboard.increase_right_score()
+        continue
+    
+    if ball_x > RIGHT_MISS:
+        ball.goto(0, 0)
+        ball.reverse_change_xcor()
+        scoreboard.increase_left_score()
         continue
 
     if ball_y > TOP_MARGIN or ball_y < BOTTOM_MARGIN:
