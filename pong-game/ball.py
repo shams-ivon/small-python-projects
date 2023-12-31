@@ -1,6 +1,7 @@
 from turtle import Turtle
 
 CHANGE_COORDINATE = 15
+SLEEP_TIME = 0.15
 
 class Ball(Turtle):
 
@@ -8,6 +9,7 @@ class Ball(Turtle):
         super().__init__()
         self.change_xcor = CHANGE_COORDINATE
         self.change_ycor = CHANGE_COORDINATE
+        self.sleep_time = SLEEP_TIME
         self.shape("circle")
         self.color("white")
         self.setheading(45)

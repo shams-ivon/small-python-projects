@@ -6,6 +6,8 @@ from paddle import Paddle
 from scoreboard import Scoreboard
 from field_decorator import Field_decorator
 
+SLEEP_TIME = 0.15
+SLEEP_TIME_SHORTENER = 1.5
 LEFT_MARGIN = -330
 RIGHT_MARGIN = 330
 TOP_MARGIN = 210
@@ -35,7 +37,6 @@ def round_close_to_zero(number):
     tmp = abs(number)
     return math.floor(tmp) if number >= 0 else - math.floor(tmp)
 
-
 field_decorator.draw_border()
 
 screen.onkey(left_paddle.up, "q")
@@ -47,7 +48,7 @@ game_is_on = True
 
 while game_is_on:
     screen.update()
-    time.sleep(0.15)
+    time.sleep(ball.sleep_time)
     ball.move()
 
     ball_x = round_close_to_zero(ball.xcor())
@@ -57,12 +58,14 @@ while game_is_on:
         ball.goto(0, 0)
         ball.reverse_change_xcor()
         scoreboard.increase_right_score()
+        ball.sleep_time = SLEEP_TIME
         continue
     
     if ball_x > RIGHT_MISS:
         ball.goto(0, 0)
         ball.reverse_change_xcor()
         scoreboard.increase_left_score()
+        ball.sleep_time = SLEEP_TIME
         continue
 
     if ball_y > TOP_MARGIN or ball_y < BOTTOM_MARGIN:
@@ -70,8 +73,10 @@ while game_is_on:
     
     if left_paddle.distance(ball) <= PADDLE_CENTRE_TO_BALL_CENTRE and ball_x <= LEFT_TOUCH:
         ball.reverse_change_xcor()
+        ball.sleep_time /= SLEEP_TIME_SHORTENER
 
     if right_paddle.distance(ball) <= PADDLE_CENTRE_TO_BALL_CENTRE and ball_x >= RIGHT_TOUCH:
         ball.reverse_change_xcor()
+        ball.sleep_time /= SLEEP_TIME_SHORTENER
 
 screen.exitonclick()
