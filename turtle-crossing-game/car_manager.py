@@ -10,6 +10,7 @@ STRETCH_HOR = 2
 FROM_Y = -200
 TO_Y = 200
 X_COR = 380
+CAR_VERTICAL_DISTANCE = 30
 
 class Car_manager:
     
@@ -32,6 +33,6 @@ class Car_manager:
     def move_all_cars_one_step_forward(self):
 
         for car in self.cars:
-            x_cor = car.xcor() - 30
+            x_cor = car.xcor() - CAR_VERTICAL_DISTANCE
             car.goto(x_cor, car.ycor())
 

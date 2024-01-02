@@ -5,7 +5,8 @@ from car_manager import Car_manager
 from scoreboard import Scoreboard
 from field_decorator import Field_decorator
 
-TIMING = 0.5
+TIMING = 0.1
+SAFE_DISTANCE = 20
 
 screen = Screen()
 screen.setup(width=800, height=600)
@@ -22,6 +23,7 @@ field_decorator.draw_border()
 screen.onkey(player.move_forward, "Up")
 
 game_is_on = True
+counter = 0
 
 for _ in range(50):
     car_manager.one_move()
@@ -29,5 +31,14 @@ for _ in range(50):
 while game_is_on:
     time.sleep(TIMING)
     screen.update()
+    
+    if counter % 3 == 0:
+        car_manager.one_move()
 
-    car_manager.one_move()
+    for car in car_manager.cars:
+        if car.distance(player) < SAFE_DISTANCE:
+            game_is_on = False
+
+    counter += 1
+
+screen.exitonclick()
