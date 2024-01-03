@@ -10,6 +10,9 @@ class Snake:
 
     def __init__(self):
         self.snake_blocks = []
+        self.create_snake_and_set_head()
+
+    def create_snake_and_set_head(self):
         self.create_snake()
         self.head = self.snake_blocks[0]
 
@@ -37,6 +40,10 @@ class Snake:
             self.snake_blocks[index].goto(next_x, next_y)
 
         self.head.forward(ONE_MOVE_DISTANCE)
+
+    def reset(self):
+        self.snake_blocks.clear()
+        self.create_snake_and_set_head()
 
     def up(self):
 
