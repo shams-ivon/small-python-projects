@@ -3,14 +3,13 @@ from turtle import Turtle
 SCOREBOARD_FONT = ("Courier", 30, "normal")
 GAME_OVER_FONT = ("Comic Sans MS", 60, "normal")
 SCOREBOARD_POSITION = (-270, 260)
-# GAME_OVER_TEXT_POSITION = (-170, -20)
 
 class Scoreboard(Turtle):
 
     def __init__(self):
         super().__init__()
         self.score = 0
-        self.high_score = 0
+        self.set_high_score_from_file()
         self.hideturtle()
         self.penup()
         self.goto(SCOREBOARD_POSITION)
@@ -28,13 +27,18 @@ class Scoreboard(Turtle):
     def reset_score(self):
 
         if self.score > self.high_score:
-            self.high_score = self.score 
+            self.high_score = self.score
+            self.set_high_score_into_file() 
         
         self.score = 0
         self.updated_scoreboard()
 
-    # def game_over(self):
-    #     self.penup()
-    #     self.goto(GAME_OVER_TEXT_POSITION)
-    #     self.color("red")
-    #     self.write("GAME OVER", font=GAME_OVER_FONT)
+    def set_high_score_from_file(self):
+
+        with open("high_score.txt", "r") as file:
+            self.high_score = int(file.read())
+        
+    def set_high_score_into_file(self):
+
+        with open("high_score.txt", "w") as file:
+            file.write(str(self.high_score))
