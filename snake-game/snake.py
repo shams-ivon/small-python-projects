@@ -42,6 +42,10 @@ class Snake:
         self.head.forward(ONE_MOVE_DISTANCE)
 
     def reset(self):
+
+        for block in self.snake_blocks:
+            block.hideturtle()
+
         self.snake_blocks.clear()
         self.create_snake_and_set_head()
 
