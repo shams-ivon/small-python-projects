@@ -22,12 +22,16 @@ state_name_writter.penup()
 collected_states = []
 
 while len(collected_states) < 50:    
-    input_state_name = screen.textinput(title=f"{len(collected_states)}/50 states guessed", prompt=TEXT_INPUT_PROMPT)
+    input_state_name = screen.textinput(title=f"{len(collected_states)}/50 states guessed", 
+                                        prompt=TEXT_INPUT_PROMPT).title()
     on_list = False
+
+    if input_state_name == "Exit":
+        break
 
     for state in collected_states:
 
-        if state.lower() == input_state_name.lower():
+        if state == input_state_name:
             on_list = True
             break
     
@@ -36,7 +40,7 @@ while len(collected_states) < 50:
 
     for index in range(50):
         
-        if input_state_name.lower() == state_name_list[index].lower():
+        if input_state_name == state_name_list[index]:
             x_cor = state_xcor_list[index]
             y_cor = state_ycor_list[index]
             state_name = state_name_list[index]
@@ -44,4 +48,16 @@ while len(collected_states) < 50:
             state_name_writter.goto(x_cor, y_cor)
             state_name_writter.write(state_name)
 
-screen.exitonclick()
+missing_states = []
+
+for state in state_name_list:
+
+    if state not in collected_states:
+        missing_states.append(state)
+
+state_dict = {
+    "Missing States": missing_states
+}
+
+state_frame = pandas.DataFrame(state_dict)
+state_frame.to_csv("missing_states.csv")
