@@ -48,12 +48,7 @@ while len(collected_states) < 50:
             state_name_writter.goto(x_cor, y_cor)
             state_name_writter.write(state_name)
 
-missing_states = []
-
-for state in state_name_list:
-
-    if state not in collected_states:
-        missing_states.append(state)
+missing_states = [state for state in state_name_list if state not in collected_states]
 
 state_dict = {
     "Missing States": missing_states
