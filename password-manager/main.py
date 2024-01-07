@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 LABEL_FONT = ("Courier", 15)
 
@@ -11,12 +12,22 @@ def save():
     email = email_entry.get()
     password = password_entry.get()
 
-    with open("saved_passwords.txt", "a") as file:
-        file.write(f"{website} | {email} | {password}\n")
+    if len(website) == 0 or len(email) == 0 or len(password) == 0:
+        messagebox.showerror(title="Error!", message="Please, don't leave any fields empty!")
+        return
+    
+    is_ok = messagebox.askokcancel(title=website, message=f"Website: {website}\n"
+                                                f"Email: {email}\nPassword: {password}\n"
+                                                f"\nAre you sure you want to save the informations?")
+    
+    if is_ok:
 
-    website_entry.delete(0, "end")
-    password_entry.delete(0, "end")
-    website_entry.focus()
+        with open("saved_passwords.txt", "a") as file:
+            file.write(f"{website} | {email} | {password}\n")
+
+        website_entry.delete(0, "end")
+        password_entry.delete(0, "end")
+        website_entry.focus()
 
 # ---------------------------- UI SETUP ------------------------------- #
 
