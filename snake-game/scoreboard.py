@@ -1,7 +1,6 @@
 from turtle import Turtle
 
 SCOREBOARD_FONT = ("Courier", 30, "normal")
-GAME_OVER_FONT = ("Comic Sans MS", 60, "normal")
 SCOREBOARD_POSITION = (-270, 260)
 
 class Scoreboard(Turtle):
