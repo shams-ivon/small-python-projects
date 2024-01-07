@@ -17,11 +17,25 @@ TIMER_FONT = (FONT_NAME, 35, "bold")
 CHECKMARK_FONT = (FONT_NAME, 25, "bold")
 TIME_LAPS = 200
 
+reps = 1
+timer = None
+checkmark = "✓"
+checkmarks_string = ""
+
 # ---------------------------- TIMER RESET ------------------------------- # 
 
-# ---------------------------- TIMER MECHANISM ------------------------------- # 
+def reset_timer():
+    global reps
+    global checkmarks_string
 
-reps = 1
+    reps = 1
+    checkmarks_string = ""
+    window.after_cancel(timer)
+    label.config(text="Timer")
+    checkmarks_display.config(text="")    
+    canvas.itemconfig(timer_text, text="00:00")
+
+# ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_timer():
 
@@ -46,6 +60,7 @@ def start_timer():
 def countdown(current_time):
     global reps
     global checkmarks_string
+    global timer
 
     current_minute = math.floor(current_time / 60)
     current_second = current_time % 60
@@ -68,12 +83,10 @@ def countdown(current_time):
         window.after(TIME_LAPS, start_timer)
     
     if current_time > 0:
-        window.after(TIME_LAPS, countdown, current_time - 1)
+        timer = window.after(TIME_LAPS, countdown, current_time - 1)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
-checkmark = "✓"
-checkmarks_string = ""
 
 window = Tk()
 window.title("Pomodoro Timer")
@@ -94,7 +107,7 @@ checkmarks_display.grid(row=4, column=2)
 start_button = Button(text="Start", font=BUTTON_TEXT_FONT, bg="white", command=start_timer)
 start_button.grid(row=3, column=1)
 
-reset_button = Button(text="Reset", font=BUTTON_TEXT_FONT, bg="white", highlightthickness=0)
+reset_button = Button(text="Reset", font=BUTTON_TEXT_FONT, bg="white", command=reset_timer)
 reset_button.grid(row=3, column=3)
 
 window.mainloop()
