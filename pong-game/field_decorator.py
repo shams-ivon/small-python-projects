@@ -11,7 +11,7 @@ HORIZONTAL_BORDER_SIZE = 20
 VERTICAL_BORDER_SIZE = 1
 ONE_DASH_SIZE = 10
 
-class Field_decorator(Turtle):
+class FieldDecorator(Turtle):
 
     def __init__(self):
         super().__init__()

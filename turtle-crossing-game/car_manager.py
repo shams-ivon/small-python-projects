@@ -14,7 +14,7 @@ CAR_SPEED = 10
 CAR_VERTICAL_DISTANCE = 10
 SPEED_UP = 10
 
-class Car_manager:
+class CarManager:
     
     def __init__(self):
         self.cars = []

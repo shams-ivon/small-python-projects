@@ -5,7 +5,7 @@ RIGHT_TOP = (400, 250)
 LEFT_BOTTOM = (-400, -250)
 RIGHT_BOTTOM = (400, -250)
 
-class Field_decorator(Turtle):
+class FieldDecorator(Turtle):
 
     def __init__(self):
         super().__init__()

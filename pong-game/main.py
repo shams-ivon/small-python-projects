@@ -4,7 +4,7 @@ from ball import Ball
 from turtle import Screen
 from paddle import Paddle
 from scoreboard import Scoreboard
-from field_decorator import Field_decorator
+from field_decorator import FieldDecorator
 
 SLEEP_TIME = 0.15
 SLEEP_TIME_SHORTENER = 1.5
@@ -27,7 +27,7 @@ screen.title("Pong Game")
 screen.tracer(0)
 screen.listen()
 
-field_decorator = Field_decorator()
+field_decorator = FieldDecorator()
 left_paddle = Paddle(LEFT_PADDLE_POSITION)
 right_paddle = Paddle(RIGHT_PADDLE_POSITION)
 ball = Ball()

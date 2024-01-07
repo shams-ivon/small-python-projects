@@ -4,7 +4,7 @@ from turtle import Screen
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
-from field_decorator import Field_decorator
+from field_decorator import FieldDecorator
 
 LEFT_MARGIN = -260
 RIGHT_MARGIN = 260
@@ -25,7 +25,7 @@ screen.listen()
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
-field_decorator = Field_decorator()
+field_decorator = FieldDecorator()
 
 field_decorator.draw_border()
 

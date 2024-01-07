@@ -1,9 +1,9 @@
 import time
 from turtle import Screen
 from player import Player
-from car_manager import Car_manager
+from car_manager import CarManager
 from scoreboard import Scoreboard
-from field_decorator import Field_decorator
+from field_decorator import FieldDecorator
 
 TIMING = 0.1
 DIVIDE = 1.5
@@ -16,9 +16,9 @@ screen.title("Turtle Crossing Game")
 screen.tracer(0)
 screen.listen()
 
-field_decorator = Field_decorator()
+field_decorator = FieldDecorator()
 player = Player()
-car_manager = Car_manager()
+car_manager = CarManager()
 scoreboard = Scoreboard()
 
 field_decorator.draw_border()
