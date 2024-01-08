@@ -26,6 +26,38 @@ def generate_password():
     generated_password = "".join(password_list)
     password_entry.insert(0, generated_password)
 
+# --------------------------------- SEARCH -------------------------------------- #
+
+def search_password():
+    website_name = website_entry.get()
+
+    if len(website_name) == 0:
+        messagebox.showinfo(message="Please, insert a website's name.")
+        return
+
+    try:
+        with open("saved_passwords.json", "r") as file:
+            existing_data = json.load(file)
+    
+    except FileNotFoundError:
+        messagebox.showinfo(message="No data file found")
+        return
+    
+    except json.decoder.JSONDecodeError:
+        messagebox.showinfo(message="Password isn't saved for this website.")
+        return
+
+    try:
+        website_data = existing_data[website_name]
+    
+    except KeyError:
+        messagebox.showinfo(message="Password isn't saved for this website.")
+
+    else:
+        messagebox.showinfo(message=f"Website: {website_name}\n"
+                            f"Email: {website_data['email']}\n"
+                            f"Password: {website_data['password']}")
+        
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def save():
@@ -36,6 +68,7 @@ def save():
     if len(website) == 0 or len(email) == 0 or len(password) == 0:
         messagebox.showerror(title="Error!", message="Please, don't leave any fields empty!")
         return
+    
     new_data = {
         website: {
             "email": email,
@@ -53,7 +86,7 @@ def save():
                 existing_data = json.load(file)
                 existing_data.update(new_data)
 
-        except FileNotFoundError:
+        except (FileNotFoundError, json.decoder.JSONDecodeError):
             with open("saved_passwords.json", "w") as file:
                 json.dump(new_data, file, indent=4)
 
@@ -85,9 +118,9 @@ email_label.grid(row=3, column=1)
 password_label = Label(text="Password :", font=LABEL_FONT)
 password_label.grid(row=4, column=1)
 
-website_entry = Entry(width=37)
+website_entry = Entry()
 website_entry.focus()
-website_entry.grid(row=2, column=2, columnspan=2)
+website_entry.grid(row=2, column=2)
 
 email_entry = Entry(width=37)
 email_entry.insert(0, "abc@efg.com")
@@ -95,6 +128,9 @@ email_entry.grid(row=3, column=2, columnspan=2)
 
 password_entry = Entry()
 password_entry.grid(row=4, column=2, columnspan=1)
+
+search_button = Button(text="Search Password", width=13, command=search_password)
+search_button.grid(row=2, column=3)
 
 generate_button = Button(text="Generate Password", command=generate_password)
 generate_button.grid(row=4, column=3)
